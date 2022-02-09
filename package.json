@@ -4,6 +4,7 @@
   "description": "Lerning TypeScript",
   "main": "index.js",
   "scripts": {
+    "build": "tsc 01_hola_mundo/hola.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/BrandConstantin/TypeScript/issues"
   },
-  "homepage": "https://github.com/BrandConstantin/TypeScript#readme",
-  "devDependencies": {
-    "typescript": "^4.5.5"
-  }
+  "homepage": "https://github.com/BrandConstantin/TypeScript#readme"
 }
