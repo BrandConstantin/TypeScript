@@ -7,14 +7,14 @@ class Rectangulo{
         this.ancho = ancho;
     }
 
-    area(){
+    area(): number{
         return this.ancho * this.alto;
     }
-    perimetro(){
+    perimetro(): number{
         return this.ancho * 2 + this.alto * 2;
     }
 }
 
 let r1 = new Rectangulo(10, 13);
 let r2 = new Rectangulo(5, 8);
-console.log(r1.area + " / " + r2.perimetro);
+console.log(r1.area() + " / " + r2.perimetro());
