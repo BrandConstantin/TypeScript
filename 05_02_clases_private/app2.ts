@@ -15,6 +15,6 @@ class Rectangulo{
     }
 }
 
-let r1 = new Rectangulo(10, 13);
-let r2 = new Rectangulo(5, 8);
+let r1 = new Rectangulo(5, 8);
+let r2 = new Rectangulo(10, 13);
 console.log(r1.area() + " / " + r2.perimetro());
