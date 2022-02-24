@@ -3,7 +3,7 @@ enum Permisos{ // los números representa el permiso en este ejemplo
     // EscribirMensajes = 1, Reaccionar = 2, EnviarEnlaces = 4, ConectarseCanalesDeVoz = 8
     // métodos 2
     EscribirMensajes = 1,
-    Reaccionar = EscribirMensajes + 2,
-    EnviarEnlaces = Reaccionar + 2,
-    ConectarseCanalesDeVoz = EnviarEnlaces + 2
+    Reaccionar = EscribirMensajes * 2,
+    EnviarEnlaces = Reaccionar * 2,
+    ConectarseCanalesDeVoz = EnviarEnlaces * 2
 }
