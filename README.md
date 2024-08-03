@@ -517,3 +517,8 @@ console.log(SuperClass);
 const myClass = new SuperClass();
 console.log(myClass);
 ```
+## Encadenamiento
+* children es opcional
+```const howManyChildrens = passenger.children?.length || 0;```
+* children siempre tiene valor
+```const howManyChildrens = passenger.children!.length || 0;```
