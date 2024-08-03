@@ -147,3 +147,95 @@ const superHeroe: SuperHero = {
 const address = superHeroe.showAddress();
 console.log(address);
 ```
+
+## Desestructuración
+### Desestructuración de Objetos
+```
+interface AudioPlayer{
+    audioVolume: number;
+    songDuration: number;
+    song: string;
+    details: Details;
+}
+
+interface Details{
+    author: string;
+    year: number;
+}
+
+const audioPlayer: AudioPlayer = {
+    audioVolume: 90,
+    songDuration: 30,
+    song: "Mess",
+    details: {
+        author: "Ed Sheren",
+        year: 2015
+    }
+}
+
+// sin desestructuración
+console.log('Song: ', audioPlayer.song);
+console.log('Song author: ', audioPlayer.details.author);
+
+
+// con desestructuración
+const {song:nombreCancion, songDuration, details} = audioPlayer;
+console.log('Song name: ', nombreCancion);
+console.log('Song duration: ', songDuration);
+const{author} = details;
+console.log('Author: ', author);
+```
+### Desestructuración de arreglos
+```
+// sin desestructuración
+const dbz: string [] = ['Goku','Vegeta','Trunk'];
+console.group('Personaje 3: ', dbz[2]);
+
+// con desestructuración
+const [ , , trunk = 'Not Found']: string [] = ['Goku','Vegeta','Trunk']; // not found si la posición 3 no existe
+console.group('Personaje 3: ', trunk);
+```
+### Desestructuración de argumentos
+```
+interface Product {
+    description: string;
+    price: number;
+}
+
+const phone: Product = {
+    description: 'Nokia A1',
+    price: 150.0
+}
+
+const tablet: Product = {
+    description: 'iPad Air',
+    price: 350
+}
+
+interface taxCalculationOptions{
+    tax: number;
+    products: Product[];
+}
+
+function taxCalculation(options: taxCalculationOptions): number[]{
+    const {tax, products}  = options;
+    let total = 0;
+
+    products.forEach(({price}) => {
+        total += price;
+    });
+
+    return[total, total * tax];
+}
+
+const shoppingCart = [phone, tablet];
+const tax = 0.15;
+
+const [total, taxTotal] = taxCalculation({
+    products: shoppingCart,
+    tax, // es el tax: tax en ES6
+});
+
+console.log('Total ', total);
+console.log('Tax ', tax);
+```
