@@ -239,3 +239,111 @@ const [total, taxTotal] = taxCalculation({
 console.log('Total ', total);
 console.log('Tax ', tax);
 ```
+## Clases
+### Clase básica
+```
+class Rectangulo{
+    ancho: number;
+    alto: number;
+
+    constructor(alto:number, ancho:number){
+        this.alto = alto;
+        this.ancho = ancho;
+    }
+
+    area(): number{
+        return this.ancho * this.alto;
+    }
+    perimetro(): number{
+        return this.ancho * 2 + this.alto * 2;
+    }
+}
+
+let r1 = new Rectangulo(10, 13);
+let r2 = new Rectangulo(5, 8);
+console.log(r1.area() + " / " + r2.perimetro());
+```
+### Readonly
+```
+class Rectangulo{
+    readonly ancho: number; // es equivalente en java con finally
+    private readonly alto: number;
+
+    ....
+}
+```
+### Getters and Setters
+```
+class Rectangulo{
+    readonly ancho: number; // es equivalente en java con finally
+    private readonly alto: number;
+
+    constructor(alto:number, ancho:number){
+        this.alto = alto;
+        this.ancho = ancho;
+    }
+
+    // getters
+    get area(): number{
+        return this.ancho * this.alto;
+    }
+    get perimetro(): number{
+        return this.ancho * 2 + this.alto * 2;
+    }
+
+    // setters
+    set area(value: number){
+        this.area = value;
+    }
+    set perimetro(value: number){
+        this.perimetro = value;
+    }
+}
+```
+### Extend
+```
+class Vehiculo{
+    fabricante: string;
+
+    constructor(fabricante: string){
+        this.fabricante = fabricante;
+    }
+
+    moverse(){
+        console.log(`El vehiculo ${this.fabricante} se esta moviendo`);
+    }
+}
+
+class VehiculoTerrestre extends Vehiculo{
+    private tipo: string;
+
+    constructor(tipo: string, fabricante: string){
+        super(fabricante);
+        this.tipo = tipo;
+    }
+
+    moverse(): void {
+        super.moverse();
+        console.log("El vehiculo esta moviendo sus 4 ruedas");
+    }
+}
+let v1 = new Vehiculo("Ford");
+v1.moverse();
+let v2 = new VehiculoTerrestre("VW", "Golf");
+v2.moverse();
+```
+### Abstract & protected
+```
+abstract class Vehiculo{
+    protected fabricante: string;
+
+    constructor(fabricante: string){
+        this.fabricante = fabricante;
+    }
+
+    moverse(){
+        console.log(`El vehiculo ${this.fabricante} se esta moviendo`);
+    }
+}
+....
+```
