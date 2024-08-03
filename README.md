@@ -437,3 +437,83 @@ enum DiaSemana{
     Lunes, Martes, Miercoles
 }
 ```
+## Genéricos
+### Genéricos en tipo
+```
+interface Respuesta<Msg>{
+    typeMessage: string,
+    success: boolean,
+    message: Msg
+}
+
+let payload: Respuesta<string> = {
+    typeMessage: 'post',
+    success: true,
+    message: 'Cliente actualizado correctamente!'
+}
+```
+### Genéricos múltiples
+```
+interface Respuesta<Msg, IdMsg>{
+    typeMessage: string,
+    success: boolean,
+    message: Msg,
+    newId?: IdMsg
+}
+
+let payload: Respuesta<string, number> = {
+    typeMessage: 'post',
+    success: true,
+    message: 'Cliente actualizado correctamente!',
+    newId: 234
+}
+```
+### Genéricos en funciones
+```
+type Nota = {mensaje: string}
+type NotaColorida = Nota & {color: string}
+type Foto = {url: string}
+type Video = {duracion: number}
+
+type Publicacion = Nota | NotaColorida | Foto | Video;
+
+// HTTP POST /upload
+function subir<Publicacion, Extra>(p: Publicacion, e?: Extra): Publicacion{
+    return p;
+}
+
+let post: Nota = {mensaje:"hola mundo"};
+let x = subir(post);
+```
+### Genéricos con restricciones
+```
+function subir<Publicacion extends Post, Extra>(p: Publicacion, e?: Extra): Publicacion{
+    return p;
+}
+```
+## Decoradores
+Son funciones especiales que apuntan a objetos
+```
+function classDecorador<T extends {new (...args:any[]): {}}>(
+    constructor: T
+){
+    return class extends constructor{
+        newProperty = 'New Property';
+        hello = 'override';
+    }
+}
+
+@classDecorador //@service; @module; @component
+class SuperClass{
+    public myProperty: string = 'Abc123';
+
+    printing(){
+        console.log("Hola Mundo")
+    }
+}
+
+console.log(SuperClass);
+
+const myClass = new SuperClass();
+console.log(myClass);
+```
