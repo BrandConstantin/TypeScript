@@ -347,3 +347,93 @@ abstract class Vehiculo{
 }
 ....
 ```
+## Tipos
+### Tipos alias
+```
+type Numero = number;
+let n: Numero = 5;
+
+type LoginCredentials = {
+    username: string,
+    password: string,
+    remember?: boolean
+}
+function login(data: LoginCredentials){ }
+login({
+    username: 'admin',
+    password: 'admin'
+})
+```
+### Tipos literales
+```
+let verdadera: true = true;
+
+// no se les pueden mofifica el valor
+let hola: 'hola' = 'hola';
+const saludo = "adio";
+```
+## Uniones
+### Unión de tipos
+```
+function convertir(valor: string | number){}
+
+convertir("montaña");
+convertir(4);
+
+type A ={
+    uno: boolean,
+    dos: boolean
+}
+type B ={
+    tres: boolean
+}
+// let valor: A|B = {tres: boolean}  // coge los valores o de uno o de otro
+let valor: A|B = {uno: true, dos: false}
+```
+### Unión discriminantes
+```
+type OperacionSuma = {
+    num1: number,
+    num2: number,
+    tipo: 'suma'
+}
+
+type OperacionDividir = {
+    num1: number,
+    num2: number,
+    tipo: 'dividir'
+}
+
+type Operacion = OperacionSuma | OperacionDividir;
+
+function operar(op: Operacion){
+    if(op.tipo == 'suma'){
+        return op.num1 + op.num2;
+    }else if(op.tipo == 'dividir'){
+        op.num1 / op.num2;
+    }
+}
+```
+## Casting 
+```
+function procesar(g: Geometria){
+    if(g.lados == 4){
+        let cuadrado = g as Cuadrado;
+        cuadrado.lado = 2;
+    } else if (g.lados == 3){
+        let triangulo = g as Triangulo;
+        triangulo.base = 2;
+    }
+}
+
+//otro tipo de casteo
+function esUnCuadrado(x: any): x is Cuadrado{
+    return x.lados && x.pintar && x.lado;
+}
+```
+## Tipos enumerados
+```
+enum DiaSemana{
+    Lunes, Martes, Miercoles
+}
+```
